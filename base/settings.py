@@ -16,6 +16,13 @@ ALLOWED_HOSTS = []
 WSGI_APPLICATION = 'base.wsgi.application'
 ASGI_APPLICATION = 'base.asgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+
+}
+
 
 #endregion BASE SETTINGS & DEPLOYMENT
 
