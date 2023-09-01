@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ChatRoom
+from .models import ChatRoom, ChatMessage
 
 def index(request):
     cr = ChatRoom.objects.all()
@@ -8,7 +8,8 @@ def index(request):
 
 def chatroom(request, slug):
     chatroom = ChatRoom.objects.get(slug=slug)
-    context = {'chatroom': chatroom}
+    messages = ChatMessage.objects.filter(room=chatroom)[0:30]
+    context = {'chatroom': chatroom, 'messages': messages}
     return render(request, 'app/room.html', context)
 
 
